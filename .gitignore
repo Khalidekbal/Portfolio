@@ -9,6 +9,7 @@ build/
 .next/
 out/
 Medical Robot VIdeos/
+Bio-Mechatronics/
 
 # Environment variables
 .env

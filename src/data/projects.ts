@@ -100,41 +100,66 @@ export const projectsData: Project[] = [
   },
   {
     id: 'myoelectric-gesture-control',
-    title: 'Myoelectric Gesture Control Pipeline',
-    shortTitle: 'sEMG Gesture Pipeline',
+    title: 'Myoelectric Gesture Control & Simscape Multibody Prosthetic Hand',
+    shortTitle: 'sEMG Gesture & Multibody Hand',
     category: 'Biomechatronics',
-    courseOrContext: 'Introduction to Biomechatronics',
-    description: 'End-to-end real-time myoelectric pipeline capturing surface Electromyography (sEMG) signals, filtering electrical noise, extracting time-domain features, and classifying hand/arm gestures for prosthetic control.',
-    longDescription: 'This biomechatronics research project establishes a lightweight, low-latency signal acquisition and processing architecture for bionic upper-limb prosthetics. By sampling muscle micro-potentials via non-invasive Ag/AgCl surface electrodes, the system applies real-time digital filtering and pattern recognition to drive motorized prosthetic fingers with under 80 ms latency.',
+    courseOrContext: 'Introduction to Biomechatronics / Ain Shams University',
+    description: 'End-to-end real-time myoelectric pipeline capturing surface Electromyography (sEMG) signals, filtering electrical noise, extracting time-domain statistical features, and driving an articulated 3D prosthetic hand simulated dynamically in MATLAB Simscape Multibody.',
+    longDescription: 'This biomechatronics research project establishes a lightweight, low-latency signal acquisition and processing architecture for bionic upper-limb prosthetics. By sampling muscle micro-potentials via non-invasive Ag/AgCl surface electrodes, the system applies real-time digital filtering and pattern recognition to drive motorized prosthetic fingers with under 80 ms latency.\n\nThe complete mechanical kinematic model of the prosthetic hand was engineered and dynamically simulated in MATLAB Simscape Multibody and Mechanics Explorer. The anatomical branching architecture simulates each individual finger (Thumb, Index, Middle, Ring, Little) with multi-phalanx revolute joints and rigid transform coordinate systems, validating torque response and fluid multi-digit grasping gestures.',
     highlights: [
       'Real-time analog-to-digital sEMG capture at 1 kHz with 50 Hz notch and 20–450 Hz 4th-order Butterworth bandpass filtering',
       'Time-domain feature extraction pipeline calculating MAV, Zero Crossings (ZC), Waveform Length (WL), and Root Mean Square (RMS)',
+      'Dynamic kinematic and multi-body simulation of 5-finger articulated prosthetic hand in MATLAB Simscape Multibody & Mechanics Explorer',
       'Low-latency pattern classification algorithm mapping forearm muscle activation to specific hand grips',
       'Microcontroller deployment on ESP32 running synchronized PWM control for multi-finger prosthetic actuators'
     ],
-    techStack: ['Python', 'NumPy', 'SciPy', 'Digital Signal Processing (DSP)', 'sEMG Electrodes', 'ESP32 / Arduino', 'C++', 'MATLAB'],
+    techStack: ['MATLAB', 'Simulink', 'Simscape Multibody', 'Mechanics Explorer', 'Python', 'NumPy', 'SciPy', 'Digital Signal Processing (DSP)', 'sEMG Electrodes', 'ESP32 / Arduino', 'C++'],
     hardwareSpecs: [
       { label: 'Signal Acquisition', value: 'Differential Surface EMG Bio-amplifier with Active Grounding' },
       { label: 'Sampling Rate', value: '1,000 Hz (1 kHz) over 12-bit ADC' },
       { label: 'Electrodes', value: 'Medical-Grade Ag/AgCl Surface Electrodes over Flexor/Extensor muscles' },
+      { label: 'Prosthetic Mechanism', value: 'Anatomical 5-digit multi-phalanx prosthetic hand with revolute joints' },
       { label: 'Actuator Platform', value: 'Servo-actuated 5-digit Bionic Hand Prosthesis' }
     ],
     softwareSpecs: [
+      { label: 'Dynamic Simulation', value: 'MATLAB R2024b Simscape Multibody & Mechanics Explorer' },
+      { label: 'Kinematic Topology', value: 'Multi-phalanx tree (Distal, Intermediate, Proximal) with revolute blocks' },
       { label: 'Signal Processing', value: 'SciPy & NumPy (Python) ported to Fixed-Point C++ DSP' },
       { label: 'Digital Filter', value: '4th Order Butterworth (20–450 Hz) + 50 Hz IIR Comb Notch' },
       { label: 'Feature Extraction', value: 'Sliding 150 ms Window with 50 ms Overlap (MAV, RMS, WL, ZC)' },
       { label: 'Actuator Control', value: 'PID-Smoothed PWM Servo Angles over FreeRTOS task' }
     ],
     problem: 'Commercial prosthetic hands often suffer from high cost, erratic false activations caused by 50/60 Hz power-line interference, and excessive computational latency that breaks the intuitive user proprioceptive loop.',
-    solution: 'Engineered a highly optimized DSP pipeline that suppresses motion artifacts and power-line interference, extracts robust statistical signatures, and achieves real-time robotic hand grasping in under 75 ms.',
-    results: 'Reached 94.2% gesture classification accuracy across 5 distinct hand gestures with negligible latency perceived by the user.',
+    solution: 'Engineered a highly optimized DSP pipeline that suppresses motion artifacts and power-line interference, extracts robust statistical signatures, and achieves real-time robotic hand grasping in under 75 ms, fully validated via dynamic MATLAB Simscape Multibody simulation.',
+    results: 'Reached 94.2% gesture classification accuracy across 5 distinct hand gestures with negligible latency perceived by the user, verified through seamless dynamic multi-finger kinematic simulation in Mechanics Explorer.',
     metrics: [
+      { label: 'Simulation Tool', value: 'Simscape Multibody' },
       { label: 'Classification Accuracy', value: '94.2%' },
       { label: 'Processing Latency', value: '68 ms' },
-      { label: 'Noise Rejection (SNR)', value: '>38 dB' },
       { label: 'Grip Modes', value: '5 Gestures' }
     ],
-    githubUrl: 'https://github.com/Khalidekbal'
+    githubUrl: 'https://github.com/Khalidekbal',
+    previewImage: '/projects/biomechatronics/matlab-mechanics-explorer.png',
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/projects/biomechatronics/matlab-mechanics-explorer.png',
+        title: 'MATLAB Mechanics Explorer 3D Prosthetic Hand & Signal Processing Pipeline',
+        caption: '3D dynamic multi-body model of the articulated prosthetic hand in MATLAB Mechanics Explorer, synchronized with real-time sliding window DSP feature extraction (MAV, RMS, WL, ZC) and gesture classification script.'
+      },
+      {
+        type: 'image',
+        url: '/projects/biomechatronics/simscape-multibody-diagram.png',
+        title: 'Simscape Multibody Block Diagram Architecture',
+        caption: 'MATLAB Simscape Multibody block diagram modeling palm rigid transform coordinates, five-finger anatomical branching, revolute joints, and multi-phalanx kinematic connections for each finger.'
+      },
+      {
+        type: 'video',
+        url: '/projects/biomechatronics/hand-gesture-simulation.mp4',
+        title: 'Simscape Multibody Dynamic Hand Gesture Simulation',
+        caption: 'Dynamic simulation video demonstrating coordinated multi-finger flexion and extension in MATLAB Simscape Multibody driven by classified myoelectric gesture control angles.'
+      }
+    ]
   },
   {
     id: '7dof-robotic-manipulator',

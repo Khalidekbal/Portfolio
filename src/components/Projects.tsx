@@ -89,7 +89,7 @@ export const Projects: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
                     <span className="absolute bottom-2.5 left-3 px-2 py-0.5 rounded bg-white/90 backdrop-blur-xs text-[10px] font-mono font-bold text-slate-800 shadow-2xs">
-                      Physical Prototype & Poster
+                      {project.category === 'Biomechatronics' ? 'MATLAB Simscape Simulation' : 'Physical Prototype & Poster'}
                     </span>
                   </div>
                 )}

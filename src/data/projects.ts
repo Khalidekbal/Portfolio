@@ -57,7 +57,7 @@ export const projectsData: Project[] = [
       { label: 'Fail-Safe Reaction', value: '<25 ms' },
       { label: 'Continuous Run-time', value: '4.5 Hours' }
     ],
-    githubUrl: 'https://github.com/khalidekbal03'
+    githubUrl: 'https://github.com/Khalidekbal'
   },
   {
     id: 'myoelectric-gesture-control',
@@ -95,7 +95,7 @@ export const projectsData: Project[] = [
       { label: 'Noise Rejection (SNR)', value: '>38 dB' },
       { label: 'Grip Modes', value: '5 Gestures' }
     ],
-    githubUrl: 'https://github.com/khalidekbal03'
+    githubUrl: 'https://github.com/Khalidekbal'
   },
   {
     id: '7dof-robotic-manipulator',
@@ -132,7 +132,7 @@ export const projectsData: Project[] = [
       { label: 'Position Repeatability', value: '±0.8 mm' },
       { label: 'Bus Communication', value: 'CAN / Micro-ROS' }
     ],
-    githubUrl: 'https://github.com/khalidekbal03'
+    githubUrl: 'https://github.com/Khalidekbal'
   },
   {
     id: 'automated-production-line',
@@ -170,7 +170,7 @@ export const projectsData: Project[] = [
       { label: 'Cycle Time', value: '12.4 sec/unit' },
       { label: 'Simulation Fidelity', value: 'Digital Twin' }
     ],
-    githubUrl: 'https://github.com/khalidekbal03'
+    githubUrl: 'https://github.com/Khalidekbal'
   },
   {
     id: 'smart-flowmeter-system',
@@ -206,7 +206,7 @@ export const projectsData: Project[] = [
       { label: 'Sensor Response', value: '<50 ms' },
       { label: 'Fabrication Method', value: 'SolidWorks DFM' }
     ],
-    githubUrl: 'https://github.com/khalidekbal03'
+    githubUrl: 'https://github.com/Khalidekbal'
   },
   {
     id: 'ev-battery-pack-bms',
@@ -242,6 +242,6 @@ export const projectsData: Project[] = [
       { label: 'Thermal Margin', value: '<55°C Peak' },
       { label: 'Balancing Delta', value: '<15 mV' }
     ],
-    githubUrl: 'https://github.com/khalidekbal03'
+    githubUrl: 'https://github.com/Khalidekbal'
   }
 ];

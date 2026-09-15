@@ -109,7 +109,7 @@ export const Hero: React.FC<HeroProps> = () => {
           className="mt-10 flex items-center justify-center space-x-5 text-slate-600"
         >
           <a
-            href="https://github.com/khalidekbal03"
+            href="https://github.com/Khalidekbal"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full bg-white border border-slate-200 hover:border-cyan-500 hover:text-cyan-600 shadow-xs transition-all duration-200 hover:scale-110"
@@ -119,7 +119,7 @@ export const Hero: React.FC<HeroProps> = () => {
           </a>
 
           <a
-            href="https://linkedin.com/in/khalidekbal"
+            href="https://www.linkedin.com/in/khalid-mohamed-ekbal-7a85b1365"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-600 shadow-xs transition-all duration-200 hover:scale-110"

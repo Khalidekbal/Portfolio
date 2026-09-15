@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
             <a
-              href="https://github.com/khalidekbal03"
+              href="https://github.com/Khalidekbal"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:text-cyan-700 hover:border-slate-300 transition-colors"
@@ -49,7 +49,7 @@ export const Footer: React.FC = () => {
               <Github className="w-4 h-4" />
             </a>
             <a
-              href="https://linkedin.com/in/khalidekbal"
+              href="https://www.linkedin.com/in/khalid-mohamed-ekbal-7a85b1365"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 hover:text-blue-700 hover:border-slate-300 transition-colors"

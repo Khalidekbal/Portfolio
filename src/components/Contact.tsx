@@ -131,7 +131,7 @@ export const Contact: React.FC = () => {
               <span className="text-xs font-mono text-slate-400">ENGINEERING PROFILES</span>
               <div className="mt-4 flex flex-wrap gap-3">
                 <a
-                  href="https://github.com/khalidekbal03"
+                  href="https://github.com/Khalidekbal"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-cyan-500 hover:text-cyan-700 text-xs text-slate-700 transition-colors"
@@ -141,7 +141,7 @@ export const Contact: React.FC = () => {
                 </a>
 
                 <a
-                  href="https://linkedin.com/in/khalidekbal"
+                  href="https://www.linkedin.com/in/khalid-mohamed-ekbal-7a85b1365"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:text-blue-700 text-xs text-slate-700 transition-colors"

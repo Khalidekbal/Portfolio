@@ -79,6 +79,21 @@ export const Projects: React.FC = () => {
                 {/* Accent Top Line */}
                 <div className="h-1 w-full bg-gradient-to-r from-cyan-600 via-teal-500 to-blue-600 opacity-80 group-hover:opacity-100 transition-opacity" />
 
+                {/* Preview Image if available */}
+                {project.previewImage && (
+                  <div className="relative h-48 w-full overflow-hidden bg-slate-100 border-b border-slate-100">
+                    <img
+                      src={project.previewImage}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
+                    <span className="absolute bottom-2.5 left-3 px-2 py-0.5 rounded bg-white/90 backdrop-blur-xs text-[10px] font-mono font-bold text-slate-800 shadow-2xs">
+                      Physical Prototype & Poster
+                    </span>
+                  </div>
+                )}
+
                 <div className="p-6 flex-1 flex flex-col">
                   {/* Category & Course meta */}
                   <div className="flex items-center justify-between gap-2 mb-3">

@@ -1,3 +1,10 @@
+export interface ProjectMedia {
+  type: 'image' | 'video';
+  url: string;
+  title: string;
+  caption: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -16,48 +23,80 @@ export interface Project {
   metrics?: { label: string; value: string }[];
   githubUrl?: string;
   previewImage?: string;
+  mediaGallery?: ProjectMedia[];
 }
 
 export const projectsData: Project[] = [
   {
     id: 'savi-medical-robot',
-    title: 'S.A.V.I. (Secure Autonomous Vial Interface) Medical Robot',
-    shortTitle: 'S.A.V.I. Medical Robot',
+    title: 'S.A.V.I. (Secure Autonomous Vial Interface) Medical Mobile Robot',
+    shortTitle: 'S.A.V.I. Medical Mobile Robot',
     category: 'Robotics & Mechatronics',
     courseOrContext: 'Design of Mechatronic Systems II / Ain Shams University',
-    description: 'Autonomous medical robotic system engineered for sterile, high-precision handling, optical barcode identification, and manipulation of clinical vials to eliminate human error and contamination.',
-    longDescription: 'S.A.V.I. is an autonomous mobile robot designed to bridge clinical laboratories and inpatient pharmacies. Operating with ROS 2 on a Raspberry Pi orchestrator paired with an ESP32 real-time motion controller, the robot navigates hospital corridors, aligns with pharmaceutical sample docks, and executes sterile vial grasping with zero direct human contact.',
+    description: 'Autonomous mobile medical robot driven by differential DC motors with closed-loop PID control via ESP32, paired with a Raspberry Pi 5 running Ubuntu 24.04 and Micro-ROS. Features live camera streaming, real-time battery telemetry to a desktop GUI, YOLOv8 vision-based hand gesture recognition to index a rotating medicine capsule carousel, and intelligent ultrasonic obstacle avoidance with timed re-routing.',
+    longDescription: 'S.A.V.I. (Secure Autonomous Vial Interface) is an autonomous medical mobile robot engineered for hospital and clinical medication delivery. The robot is propelled by a differential drive system powered by DC motors with closed-loop PID velocity control executed in real-time on an ESP32 microcontroller.\n\nThe ESP32 communicates bidirectionally with a Raspberry Pi 5 host running Ubuntu Linux 24.04 via Micro-ROS. The Raspberry Pi 5 streams a real-time camera feed from the mobile robot and broadcasts live battery consumption telemetry to a centralized computer GUI.\n\nTo ensure patient compliance, vision-based YOLOv8 is deployed directly on the Raspberry Pi 5 to recognize patient hand gestures. Each distinct gesture commands the internal medicine capsule rotor carousel to index to a specific angle, dispensing medications and logging patient adherence.\n\nFor autonomous navigation and hospital safety, the robot detects obstacles using an ultrasonic sensor array connected to the ESP32. Upon encountering an obstacle within a critical threshold distance, the robot halts for a calibrated holding duration. If the obstacle does not clear when the timer expires, the robot performs a 90-degree bypass maneuver, navigates around the obstacle, and smoothly rejoins its original trajectory.',
     highlights: [
-      'Multi-axis kinematic manipulation with specialized sterile end-effector geometry',
-      'Optical 2D barcode identification and automated sample tracking database integration',
-      'Sensor fusion combining IMU, wheel odometry, and ultrasonic sensors for sub-millimeter vial alignment',
-      'Deterministic hierarchical finite state machine (FSM) ensuring fail-safe recovery on network drops',
-      'Real-time Wi-Fi supervisory telemetry dashboard with safety E-stop protection'
+      'Differential drive mobile base driven by DC motors with deterministic closed-loop PID velocity control on an ESP32 microcontroller.',
+      'Distributed Micro-ROS architecture linking ESP32 real-time motor/sensor loops to a Raspberry Pi 5 orchestrator running Ubuntu Linux 24.04.',
+      'Computer Vision powered by YOLOv8 on Raspberry Pi 5 for real-time patient hand gesture recognition and medicine carousel angle rotation.',
+      'Live video stream transmission and real-time battery consumption telemetry reported directly to the supervisory desktop GUI.',
+      'Intelligent ultrasonic obstacle avoidance with timed standstill duration and automated 90° bypass re-routing logic.'
     ],
-    techStack: ['ROS 2', 'SolidWorks', 'Embedded C++', 'Raspberry Pi', 'ESP32', 'FreeRTOS', 'Stepper/Servo Control', 'Computer Vision'],
+    techStack: ['Differential Drive DC', 'PID Control', 'ESP32', 'Raspberry Pi 5', 'Micro-ROS', 'Ubuntu Linux 24.04', 'YOLOv8', 'Ultrasonic Sensors', 'Desktop GUI', 'SolidWorks CAD'],
     hardwareSpecs: [
-      { label: 'Compute Controller', value: 'Raspberry Pi 4 (High-Level) + ESP32-WROOM (Low-Level)' },
-      { label: 'Actuation', value: 'Closed-loop Stepper Motors + High-Torque Precision Metal Micro-Servos' },
-      { label: 'End-Effector', value: 'Custom 3D Printed DFM Gripper with Soft Silicone Contact Pads' },
-      { label: 'Power Architecture', value: 'Isolated Dual-Rail 12V / 5V DC-DC with Emergency Hardware E-Stop' },
-      { label: 'Sensory Array', value: 'Optical Barcode Camera, MPU6050 6-Axis IMU, Time-of-Flight Lasers' }
+      { label: 'Compute Controller', value: 'Raspberry Pi 5 (8GB) running Ubuntu Linux 24.04' },
+      { label: 'Low-Level Controller', value: 'ESP32 Microcontroller running Micro-ROS client' },
+      { label: 'Drive Train', value: 'Differential Drive DC Motors with PID Velocity Feedback & Encoders' },
+      { label: 'Medication Rotor', value: 'Precision Stepper Motor indexing modular cylindrical carousel' },
+      { label: 'Obstacle Detection', value: 'Ultrasonic Distance Sensors with calibrated distance triggering' },
+      { label: 'Power & Telemetry', value: 'Current/Voltage battery sensing circuit & isolated DC-DC converters' },
+      { label: 'Safety Architecture', value: 'Top-mounted Physical Hardware E-Stop button and failsafe watchdog' }
     ],
     softwareSpecs: [
-      { label: 'ROS Distribution', value: 'ROS 2 Humble Hawksbill' },
-      { label: 'Low-Level Firmware', value: 'C++ with FreeRTOS & Deterministic PID Motor Control' },
-      { label: 'Communication Protocol', value: 'Micro-XRCE-DDS over UART & WebSocket Telemetry' },
-      { label: 'State Machine', value: 'Hierarchical State Pattern with Watchdog Supervisor' }
+      { label: 'Operating System', value: 'Ubuntu Linux 24.04 LTS (Noble Numbat)' },
+      { label: 'Robotics Middleware', value: 'Micro-ROS Distributed Bridge (ESP32 to Raspberry Pi 5)' },
+      { label: 'Computer Vision', value: 'YOLOv8 Real-time Hand Gesture Recognition Pipeline' },
+      { label: 'Motor Control Logic', value: 'Deterministic Closed-loop PID Algorithm on FreeRTOS' },
+      { label: 'Bypass Maneuver', value: 'Timed standstill hold followed by 90° dynamic bypass turn' },
+      { label: 'Desktop Telemetry GUI', value: 'Live camera video stream display & real-time battery consumption monitoring' }
     ],
-    problem: 'Hospital clinical laboratories process thousands of hazardous biological vials daily. Manual handling causes sample misidentification, ergonomic repetitive stress, and hazardous bio-contamination risks for hospital staff.',
-    solution: 'Designed an integrated autonomous robotics platform featuring custom kinematic grasping, closed-loop sensor-guided docking, optical identification, and fail-safe motion planning to transport and orient clinical vials autonomously.',
-    results: 'Achieved 99.4% vial identification accuracy, zero slippage during 100+ simulated clinical transfers, and sub-second fail-safe E-stop reaction times.',
+    problem: 'Hospital inpatient medication delivery requires nurses and medical staff to spend hours manually transporting pharmaceuticals, introducing contamination hazards, dosage tracking mistakes, and caregiver fatigue in high-stress clinical wards.',
+    solution: 'Engineered an autonomous mobile medical robot powered by differential PID drive and ultrasonic collision avoidance, paired with a Raspberry Pi 5 running YOLOv8 gesture recognition to index medication capsules and stream telemetry to a central nurse station.',
+    results: 'Flawless autonomous navigation and obstacle bypass in real hospital corridor environments, sub-100ms gesture recognition latency with YOLOv8, and reliable live telemetry streaming of battery levels and video to the desktop GUI.',
     metrics: [
-      { label: 'Docking Accuracy', value: '±1.2 mm' },
-      { label: 'Barcode Recognition', value: '<120 ms' },
-      { label: 'Fail-Safe Reaction', value: '<25 ms' },
-      { label: 'Continuous Run-time', value: '4.5 Hours' }
+      { label: 'Vision Model', value: 'YOLOv8' },
+      { label: 'OS Version', value: 'Ubuntu 24.04' },
+      { label: 'Obstacle Avoidance', value: 'Timed 90° Turn' },
+      { label: 'Host System', value: 'Raspberry Pi 5' }
     ],
-    githubUrl: 'https://github.com/Khalidekbal'
+    githubUrl: 'https://github.com/Khalidekbal',
+    previewImage: '/projects/savi/team-savi-showcase.jpg',
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/projects/savi/team-savi-showcase.jpg',
+        title: 'S.A.V.I. Engineering Team & Fabricated Robot',
+        caption: 'Khalid Mohamed (center left) and the Mechatronics engineering team presenting the fully fabricated S.A.V.I. autonomous medical mobile robot alongside the technical system architecture poster.'
+      },
+      {
+        type: 'image',
+        url: '/projects/savi/cad-assembly-exploded.png',
+        title: 'Exploded 3D CAD Assembly & Internal Modular Tiers',
+        caption: 'SolidWorks exploded assembly view displaying the multi-tier internal architecture: differential drive wheel base, battery pack & power management tray, ESP32/Raspberry Pi 5 compute layer, rotating medicine capsule rotor, and top-mounted E-stop safety lid.'
+      },
+      {
+        type: 'video',
+        url: '/projects/savi/savi-environment-deployment.mp4',
+        title: 'Physical Environment Deployment & Ultrasonic Obstacle Avoidance',
+        caption: 'Field testing video showcasing the S.A.V.I. mobile robot navigating autonomously, detecting obstacles with ultrasonic sensors, executing timed standstill holding, and performing a 90-degree bypass maneuver.'
+      },
+      {
+        type: 'video',
+        url: '/projects/savi/savi-gui-deployment.mp4',
+        title: 'Desktop GUI, Live Video Streaming & YOLOv8 Gesture Carousel Rotation',
+        caption: 'Supervisory computer GUI demonstrating live camera streaming from the Raspberry Pi 5, real-time battery consumption monitoring, and YOLOv8 hand gesture detection indexing the medicine rotor.'
+      }
+    ]
   },
   {
     id: 'myoelectric-gesture-control',

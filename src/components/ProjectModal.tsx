@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Github, Cpu, Code2, AlertCircle, CheckCircle, TrendingUp, Layers, Check } from 'lucide-react';
+import { X, ExternalLink, Github, Cpu, Code2, AlertCircle, CheckCircle, TrendingUp, Layers, Check, Play, Image as ImageIcon, Video } from 'lucide-react';
 import { Project } from '../data/projects';
 
 interface ProjectModalProps {
@@ -29,7 +29,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: 'spring', duration: 0.4, bounce: 0.15 }}
-          className="relative w-full max-w-4xl max-h-[90vh] bg-white border border-slate-200 rounded-2xl shadow-2xl flex flex-col z-10 overflow-hidden"
+          className="relative w-full max-w-4xl max-h-[92vh] bg-white border border-slate-200 rounded-2xl shadow-2xl flex flex-col z-10 overflow-hidden"
         >
           {/* Header */}
           <div className="px-6 py-5 border-b border-slate-200 bg-slate-50 flex items-start justify-between">
@@ -61,12 +61,73 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             {/* Project Overview */}
             <div className="space-y-3">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-cyan-700 font-mono">
-                System Overview
+                System Overview & Architecture
               </h3>
-              <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
+              <div className="text-slate-700 text-sm sm:text-base leading-relaxed space-y-3 whitespace-pre-line">
                 {project.longDescription}
-              </p>
+              </div>
             </div>
+
+            {/* Media Showcase: Photos & Video Demos */}
+            {project.mediaGallery && project.mediaGallery.length > 0 && (
+              <div className="space-y-6 pt-2 border-t border-slate-100">
+                <div className="flex items-center space-x-2">
+                  <Video className="w-4 h-4 text-cyan-700" />
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 font-mono">
+                    Project Media, CAD Models & Deployment Videos
+                  </h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {project.mediaGallery.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="rounded-2xl border border-slate-200 bg-slate-50/70 overflow-hidden shadow-xs flex flex-col justify-between"
+                    >
+                      {/* Media Container */}
+                      <div className="relative bg-slate-950 flex items-center justify-center min-h-[240px] max-h-[320px] overflow-hidden">
+                        {item.type === 'image' ? (
+                          <img
+                            src={item.url}
+                            alt={item.title}
+                            className="w-full h-full max-h-[300px] object-contain object-center"
+                          />
+                        ) : (
+                          <video
+                            src={item.url}
+                            controls
+                            preload="metadata"
+                            className="w-full h-full max-h-[300px] bg-black"
+                          >
+                            Your browser does not support the video tag.
+                          </video>
+                        )}
+                      </div>
+
+                      {/* Info & Caption */}
+                      <div className="p-4 bg-white border-t border-slate-100 flex-1 flex flex-col justify-between">
+                        <div>
+                          <div className="flex items-center space-x-1.5 text-xs text-cyan-700 font-mono font-semibold mb-1">
+                            {item.type === 'image' ? (
+                              <ImageIcon className="w-3.5 h-3.5" />
+                            ) : (
+                              <Play className="w-3.5 h-3.5" />
+                            )}
+                            <span>{item.type === 'image' ? 'Photograph / CAD Diagram' : 'Deployment Video Demo'}</span>
+                          </div>
+                          <h4 className="text-sm font-bold text-slate-900 leading-snug">
+                            {item.title}
+                          </h4>
+                          <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
+                            {item.caption}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Metrics Grid */}
             {project.metrics && (

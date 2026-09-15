@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Download, Bot, ChevronRight } from 'lucide-react';
+import { Menu, X, Download, Bot, ChevronRight, FileText } from 'lucide-react';
 
 interface NavbarProps {
-  onOpenCVModal: () => void;
+  onOpenCVModal?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenCVModal }) => {
+export const Navbar: React.FC<NavbarProps> = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -18,6 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCVModal }) => {
     { label: 'Certificates', href: '#certificates' },
     { label: 'Skills', href: '#skills' },
     { label: 'Experience', href: '#experience' },
+    { label: 'CV / Resume', href: '#cv' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -25,8 +26,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCVModal }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = navLinks.map(link => link.href.substring(1));
-      const scrollPosition = window.scrollY + 200;
+      const sections = navLinks.map((link) => link.href.substring(1));
+      const scrollPosition = window.scrollY + 220;
 
       for (const section of sections) {
         const el = document.getElementById(section);
@@ -49,15 +50,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCVModal }) => {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled ? 'py-3' : 'py-5'
+          isScrolled ? 'py-2.5' : 'py-4'
         }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <nav
             className={`flex items-center justify-between px-4 sm:px-6 py-2.5 rounded-full transition-all duration-300 ${
               isScrolled
-                ? 'glass-nav shadow-lg shadow-black/40 border border-slate-800/80'
-                : 'bg-slate-900/40 backdrop-blur-md border border-slate-800/40'
+                ? 'glass-nav shadow-md shadow-slate-200/50 border border-slate-200/90'
+                : 'bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-sm'
             }`}
           >
             {/* Monogram / Logo */}
@@ -65,16 +66,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCVModal }) => {
               href="#home"
               className="flex items-center space-x-2.5 group cursor-pointer"
             >
-              <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-600 via-teal-500 to-blue-500 p-[1.5px] group-hover:scale-105 transition-transform duration-300">
-                <div className="w-full h-full bg-slate-950 rounded-full flex items-center justify-center">
-                  <Bot className="w-4 h-4 text-cyan-400 group-hover:rotate-12 transition-transform duration-300" />
+              <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-600 via-teal-500 to-blue-600 p-[1.5px] group-hover:scale-105 transition-transform duration-300 shadow-sm">
+                <div className="w-full h-full bg-white rounded-full flex items-center justify-center">
+                  <Bot className="w-4 h-4 text-cyan-600 group-hover:rotate-12 transition-transform duration-300" />
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-bold text-sm tracking-wide text-slate-100 group-hover:text-cyan-300 transition-colors">
-                  Khalid Mohamed<span className="text-cyan-400">.</span>
+                <span className="font-bold text-sm tracking-wide text-slate-900 group-hover:text-cyan-700 transition-colors">
+                  Khalid Mohamed<span className="text-cyan-600">.</span>
                 </span>
-                <span className="text-[10px] uppercase font-mono tracking-wider text-slate-400 -mt-0.5">
+                <span className="text-[10px] uppercase font-mono tracking-wider text-slate-500 -mt-0.5">
                   Mechatronics & Robotics
                 </span>
               </div>
@@ -90,8 +91,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCVModal }) => {
                     href={link.href}
                     className={`relative px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
                       isActive
-                        ? 'text-cyan-300 bg-cyan-500/10 border border-cyan-500/20'
-                        : 'text-slate-300 hover:text-white hover:bg-slate-800/40'
+                        ? 'text-cyan-700 bg-cyan-50 border border-cyan-200/80 shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
                     }`}
                   >
                     {link.label}
@@ -102,28 +103,29 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCVModal }) => {
 
             {/* Right Action: Download CV button */}
             <div className="hidden sm:flex items-center space-x-3">
-              <button
-                onClick={onOpenCVModal}
-                className="flex items-center space-x-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-teal-500 text-slate-950 font-semibold text-xs hover:from-cyan-400 hover:to-teal-400 transition-all duration-300 shadow-md shadow-cyan-500/20 hover:scale-[1.02] active:scale-[0.98]"
+              <a
+                href="#cv"
+                className="flex items-center space-x-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-cyan-600 to-teal-600 text-white font-semibold text-xs hover:from-cyan-500 hover:to-teal-500 transition-all duration-200 shadow-md shadow-cyan-600/20 hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Download className="w-3.5 h-3.5" />
-                <span>Resume / CV</span>
-              </button>
+                <FileText className="w-3.5 h-3.5" />
+                <span>View CV</span>
+              </a>
             </div>
 
             {/* Mobile Hamburger Button */}
             <div className="flex items-center space-x-2 lg:hidden">
-              <button
-                onClick={onOpenCVModal}
-                className="p-2 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 sm:hidden"
-                aria-label="Preview CV"
+              <a
+                href="/cv/Khalid_Mohamed_CV.pdf"
+                download
+                className="p-2 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200 sm:hidden"
+                aria-label="Download CV"
               >
                 <Download className="w-4 h-4" />
-              </button>
+              </a>
 
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-full bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-700/60 transition-colors"
+                className="p-2 rounded-full bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 transition-colors"
                 aria-label="Toggle navigation menu"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -142,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCVModal }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-xs lg:hidden"
             />
 
             <motion.div
@@ -150,19 +152,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCVModal }) => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-[#0a0e18] border-l border-slate-800 p-6 flex flex-col justify-between shadow-2xl lg:hidden"
+              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-white border-l border-slate-200 p-6 flex flex-col justify-between shadow-2xl lg:hidden"
             >
               <div>
-                <div className="flex items-center justify-between pb-6 border-b border-slate-800">
+                <div className="flex items-center justify-between pb-6 border-b border-slate-100">
                   <div className="flex items-center space-x-2">
-                    <div className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 border border-cyan-500/30">
+                    <div className="w-8 h-8 rounded-full bg-cyan-50 flex items-center justify-center text-cyan-600 border border-cyan-200">
                       <Bot className="w-4 h-4" />
                     </div>
-                    <span className="font-bold text-slate-100 text-sm">Khalid Mohamed</span>
+                    <span className="font-bold text-slate-900 text-sm">Khalid Mohamed</span>
                   </div>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                    className="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -178,30 +180,29 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCVModal }) => {
                         onClick={() => setMobileMenuOpen(false)}
                         className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                           isActive
-                            ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/20'
-                            : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                            ? 'text-cyan-700 bg-cyan-50 border border-cyan-200'
+                            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                         }`}
                       >
                         <span>{link.label}</span>
-                        <ChevronRight className="w-4 h-4 opacity-50" />
+                        <ChevronRight className="w-4 h-4 opacity-40" />
                       </a>
                     );
                   })}
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-slate-800 flex flex-col space-y-3">
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenCVModal();
-                  }}
-                  className="w-full flex items-center justify-center space-x-2 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-500 text-slate-950 font-semibold text-sm shadow-lg shadow-cyan-500/20"
+              <div className="pt-6 border-t border-slate-100 flex flex-col space-y-3">
+                <a
+                  href="/cv/Khalid_Mohamed_CV.pdf"
+                  download="Khalid_Mohamed_CV.pdf"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full flex items-center justify-center space-x-2 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-teal-600 text-white font-semibold text-sm shadow-md shadow-cyan-600/20"
                 >
                   <Download className="w-4 h-4" />
-                  <span>View / Download CV</span>
-                </button>
-                <p className="text-[11px] text-center text-slate-500 font-mono">
+                  <span>Download CV PDF</span>
+                </a>
+                <p className="text-[11px] text-center text-slate-400 font-mono">
                   Ain Shams Mechatronics & Automation
                 </p>
               </div>

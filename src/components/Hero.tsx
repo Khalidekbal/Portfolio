@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Mail, Github, Linkedin, Cpu, ChevronDown, FileText } from 'lucide-react';
+import { ArrowRight, Download, Mail, Github, Linkedin, Cpu, ChevronDown, FileText, Play } from 'lucide-react';
 
 interface HeroProps {
   onOpenCVModal?: () => void;
@@ -82,6 +82,14 @@ export const Hero: React.FC<HeroProps> = () => {
           >
             <span>View Projects</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
+
+          <a
+            href="#intro-video"
+            className="flex items-center space-x-2 px-5 py-3 rounded-xl bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 font-semibold text-sm transition-all duration-300 hover:border-cyan-400 shadow-xs"
+          >
+            <Play className="w-4 h-4 text-cyan-700 fill-cyan-700" />
+            <span>Watch Intro Video</span>
           </a>
 
           <a
